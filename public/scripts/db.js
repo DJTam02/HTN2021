@@ -34,5 +34,7 @@ function insertData() {
     firebase.database().ref('data').update({
         [name]: parseInt(val) // Square brackets allow value of variable to be the name of the field
     });
+    document.getElementById("name").value = "";
+    document.getElementById("value").value = "";
     return false;
 }
