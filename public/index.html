@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node App!</title>
+    <link rel="stylesheet" href="styles/main.css"></link>
+</head>
+<body>
+    <h1>Hello World from NodeJS!</h1> 
+
+    <button onclick="show()">Click me to show data!</button>
+
+    <table id="tbl" style="display: none;">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+    </table>
+
+    <form onsubmit="return insertData()">
+        <p>Name: <input type="text" id="name"></p>
+        <p>Value: <input type="text" id="value"></p>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCiP3tvq68yixuJmtvlRSAako91S9vDVVk",
+            authDomain: "htn2021-44b8c.firebaseapp.com",
+            databaseURL: "https://htn2021-44b8c-default-rtdb.firebaseio.com/",
+            projectId: "htn2021-44b8c",
+            storageBucket: "htn2021-44b8c.appspot.com",
+            messagingSenderId: "71109856787",
+            appId: "1:71109856787:web:62d745cb35b5bf474bf9e6",
+            measurementId: "G-CF0JC4CFJL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+    </script>
+    <script src="scripts/db.js"></script>
+</body>
+</html>
