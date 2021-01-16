@@ -19,3 +19,69 @@
     left: 50%;
     margin-left: -50px;
 }
+#start:focus{
+    outline: none;
+}
+
+#start {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    font-size: 300px;
+    padding:32px 16px;
+    color: #fff;
+    text-align: center;
+    border: none;
+
+}
+@keyframes startGlow {
+    from{
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to{
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+  @keyframes startStartGlow {
+      from{
+
+      }
+      to{
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+    }
+    @keyframes stopGlow {
+        from{
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+        }
+        to{
+          
+        }
+      }
+      @keyframes fadein {
+        from{
+          opacity: 0;
+        }
+        
+        to{
+           opacity: 1;
+        }
+      }
+#options{
+    position:absolute;
+    top: 5%;
+    left: 50%;
+    padding:32px 16px;
+    text-align: center;
+    border: none;
+    font-size: 122px;
+    color: #fff;
+    opacity: 0;
+}
+#box{
+    width: 1px; 
+    height: 1px;
+    margin-top: 170px;
+    margin-left: 115px;
+}
