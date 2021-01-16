@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game lol</title>
+    <link rel="stylesheet" href="styles/game.css"></link>
+</head>
+<body>
+    <div id="board">
+        <div id="arrows">
+            <div id="Left"></div>
+            <div id="Down"></div>
+            <div id="Up"></div>
+            <div id="Right"></div>
+        </div>
+    </div>
+    <script>
+        var numSec = 1;
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCiP3tvq68yixuJmtvlRSAako91S9vDVVk",
+            authDomain: "htn2021-44b8c.firebaseapp.com",
+            databaseURL: "https://htn2021-44b8c-default-rtdb.firebaseio.com/",
+            projectId: "htn2021-44b8c",
+            storageBucket: "htn2021-44b8c.appspot.com",
+            messagingSenderId: "71109856787",
+            appId: "1:71109856787:web:62d745cb35b5bf474bf9e6",
+            measurementId: "G-CF0JC4CFJL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+    </script>
+    <script src="scripts/game.js"></script>
+</body>
+</html>

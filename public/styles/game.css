@@ -1,0 +1,45 @@
+body {
+    background-image: url("../images/testBG.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px;
+    height: 100%;
+}
+html {
+    height: 100%;
+}
+#board {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    height: 100%;
+    margin: auto;
+    background-color: black;
+    position: relative;
+    width: 25%;
+}
+#arrows {
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translate(-50%, -100%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#Left, #Down, #Up, #Right {
+    width: 25%;
+    padding-top: 25%;
+    display: inline-block;
+    background-image: url("../images/lol.JPG");
+}
+#Left {
+    background-image: url("../images/lol.JPG");
+}
+.newArrow {
+    display: inline-block;
+    position: absolute;
+    width: 25%;
+    padding-top: 25%;
+}
+/* Add different arrows */
