@@ -1,6 +1,21 @@
 #tbl td, #tbl, #tbl th {
-    border: solid 1px black;
+    border: solid 1px rgb(172, 231, 33);
 }
 #tbl {
     border-collapse: collapse;
+}
+#board {
+    background-color: blue;
+    display: block;
+    width: 100%;
+    height: 80vh;
+}
+#square {
+    background-color: yellow;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -100px;
+    left: 50%;
+    margin-left: -50px;
 }
