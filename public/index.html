@@ -7,28 +7,6 @@
     <link rel="stylesheet" href="styles/main.css"></link>
 </head>
 <body>
-    <h1>yeet!</h1> yeet
-
-    <button onclick="show()">Click me to show data!</button>
-
-    <table id="tbl" style="display: none;">
-        <tr>
-            <th>Name</th>
-            <th>Value</th>
-        </tr>
-    </table>
-
-    <form onsubmit="return insertData()">
-        <p>Name: <input type="text" id="name"></p>
-        <p>Value: <input type="text" id="value"></p>
-        <input type="submit" value="Submit">
-    </form>
-
-    <div id="board">
-        <button onclick="slide()">Click me to run animation!</button>
-        <div id="square"></div>
-    </div>
-
     <!-- The core Firebase JS SDK is always required and must be listed first yeet-->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
@@ -57,6 +35,5 @@
         var database = firebase.database();
     </script>
     <script src="scripts/db.js"></script>
-    <script src="scripts/app.js"></script>
 </body>
 </html>
