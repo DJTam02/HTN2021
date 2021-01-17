@@ -136,6 +136,7 @@ function changeToMap(mapName) {
     document.getElementById("title").style.display = "none";
     document.getElementById("box").style.display = "none";
     document.getElementById("board").style.display = "block";
+    document.getElementById("backButton").style.display = "block";
     var op = 0;
     var bod = document.body;
     var transition = setInterval(function() {
@@ -157,4 +158,38 @@ function changeToMap(mapName) {
     numChildren = -1;
     document.addEventListener("keydown", pressed);
     document.addEventListener("keyup", lift);
+}
+
+function goBack() {
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            changeToMenu();
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+
+function changeToMenu() {
+    document.getElementById("title").style.display = "block";
+    document.getElementById("box").style.display = "block";
+    document.getElementById("board").style.display = "none";
+    document.getElementById("backButton").style.display = "none";
+    document.body.style.backgroundImage = 'none';
+    var op = 0;
+    var bod = document.body;
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
 }
