@@ -1,8 +1,5 @@
 
 function pressed(e) {
-    if (e.key == "e") {
-        map("TestMap1");
-    }
     switch (e.key) {
         case keys[0]:
             document.getElementById("Left").style.backgroundImage = 'url("../images/Arrows/Larrow2.png")';

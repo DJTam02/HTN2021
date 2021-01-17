@@ -14,7 +14,7 @@
         <button id ="start" style = "background-color: transparent;"> START </button>
 
         <div id="settings">
-            <form onsubmit="return settingsSave();">
+            <form onsubmit="return settingsSave();" style="display: inline-block">
                 <label for="volume">VOLUME: </label>
                 <input type="range" id="volume" name="volume" min="0" max="100" step="0.01"><br><br>
                 <label for="time">ARROW DURATION: </label>
@@ -31,14 +31,16 @@
                     <p id="arrowButton3">K</p>
                     
                 </div>
-                <img id = "kong" src="images/donkey.gif"> </div>
-
             </form>
+            <div style="display: inline-block;">
+                <img id="kong" src="images/donkey.gif">
+            </div>
         </div>
         <div id="maps">
         </div>
     </div>
     <div id="board">
+        
         <div id="arrows">
             <div id="Left"></div>
             <div id="Down"></div>
@@ -51,7 +53,7 @@
         var keys = ["d", "f", "j", "k"];
         var rect = document.getElementById("arrows").getBoundingClientRect();
         var wid = document.getElementById("arrows").offsetWidth / 4;
-        var pixelsPerSec = (rect.top + w) / numSec;
+        var pixelsPerSec;
         var arrowErrors = [];
         var numChildren = -1;
     </script>
