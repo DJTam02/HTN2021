@@ -5,16 +5,16 @@ function pressed(e) {
     }
     switch (e.key) {
         case keys[0]:
-            document.getElementById("Left").style.backgroundColor = "white";
+            document.getElementById("Left").style.backgroundImage = 'url("../images/Arrows/Larrow2.png")';
             break;
         case keys[1]:
-            document.getElementById("Down").style.backgroundColor = "white";
+            document.getElementById("Down").style.backgroundImage = 'url("../images/Arrows/Darrow2.png")';
             break;
         case keys[2]:
-            document.getElementById("Up").style.backgroundColor = "white";
+            document.getElementById("Up").style.backgroundImage = 'url("../images/Arrows/Uarrow2.png")';
             break;
         case keys[3]:
-            document.getElementById("Right").style.backgroundColor = "white";
+            document.getElementById("Right").style.backgroundImage = 'url("../images/Arrows/Rarrow2.png")';
             break;
     }
 }
@@ -22,24 +22,36 @@ document.addEventListener("keyup", lift);
 function lift(e) {
     switch (e.key) {
         case keys[0]:
-            document.getElementById("Left").style.backgroundColor = "transparent";
+            document.getElementById("Left").style.backgroundImage = 'url("../images/Arrows/Larrow1.png")';
             break;
         case keys[1]:
-            document.getElementById("Down").style.backgroundColor = "transparent";
+            document.getElementById("Down").style.backgroundImage = 'url("../images/Arrows/Darrow1.png")';
             break;
         case keys[2]:
-            document.getElementById("Up").style.backgroundColor = "transparent";
+            document.getElementById("Up").style.backgroundImage = 'url("../images/Arrows/Uarrow1.png")';
             break;
         case keys[3]:
-            document.getElementById("Right").style.backgroundColor = "transparent";
+            document.getElementById("Right").style.backgroundImage = 'url("../images/Arrows/Rarrow1.png")';
             break;
     }
 }
 
 function sendArrow(num, arrowNum) {
     var arrow = document.createElement("div");
-    arrow.classList.add("newArrow");
-    arrow.style.backgroundImage = 'url("../images/lol.JPG")'; // Add different arrows
+    if(num == 0){
+        arrow.classList.add("newArrowL");
+    }
+    if(num == 1){
+        arrow.classList.add("newArrowD");
+    }
+    if(num == 2){
+        arrow.classList.add("newArrowU");
+    }
+    if(num == 3){
+        arrow.classList.add("newArrowR");
+    }
+    
+    
     arrow.style.left = (num * w) + "px";
     arrow.style.top = -(rect.top + w + 1) + "px";
     document.getElementById("arrows").appendChild(arrow);

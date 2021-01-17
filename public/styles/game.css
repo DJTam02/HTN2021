@@ -27,16 +27,80 @@ html {
     display: flex;
     justify-content: space-between;
 }
-#Left, #Down, #Up, #Right {
+#Left{
     width: 25%;
     padding-top: 25%;
     display: inline-block;
-    border: 1px solid green;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Larrow1.png");
 }
-.newArrow {
+#Down{
+    width: 25%;
+    padding-top: 25%;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Darrow1.png");
+}
+#Up{
+    width: 25%;
+    padding-top: 25%;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Uarrow1.png");
+}
+#Right{
+    width: 25%;
+    padding-top: 25%;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Rarrow1.png");
+}
+.newArrowL{
     display: inline-block;
     position: absolute;
     width: 25%;
     padding-top: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Larrow1.png");
+}
+.newArrowD{
+    display: inline-block;
+    position: absolute;
+    width: 25%;
+    padding-top: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Darrow1.png");
+}
+.newArrowU{
+    display: inline-block;
+    position: absolute;
+    width: 25%;
+    padding-top: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Uarrow1.png");
+}
+.newArrowR{
+    display: inline-block;
+    position: absolute;
+    width: 25%;
+    padding-top: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url("../images/Arrows/Rarrow1.png");
 }
 /* Add different arrows */
