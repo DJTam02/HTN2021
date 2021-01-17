@@ -14,6 +14,7 @@ function pressed(e) {
             document.getElementById("Right").style.backgroundImage = 'url("../images/Arrows/Rarrow2.png")';
             break;
     }
+    if (e.key == "e") { map("TestMap1") }
 }
 function lift(e) {
     switch (e.key) {
@@ -31,7 +32,77 @@ function lift(e) {
             break;
     }
 }
+function endScreen(){
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            toEndScreen();
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+function toEndScreen(){
+    var op = 0;
+    var bod = document.body;
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+    document.getElementById("board").style.display = "none";
+    document.getElementById("backButton").style.display = "none";
+    document.getElementById("backButtonEnd").style.display = "block";
+    document.getElementById("gameEndScreen").style.display = "inline-block";
+    document.body.style.backgroundImage = "none";
+    document.body.style.backgroundColor = "black";
+    miss = numChildren - (perf + gre + goo + ok);
+    document.getElementById("perfs").innerHTML = "Perfects: " + perf
+    document.getElementById("greas").innerHTML = "Greats: " + gre
+    document.getElementById("goos").innerHTML = "Goods: " + goo
+    document.getElementById("oks").innerHTML = "Okays: "  + ok
+    document.getElementById("mis").innerHTML = "Misses: " + miss
+    finalScore = (perf + gre*(0.7)+goo*(0.5)+ok*(0.3))/5;
+    document.getElementById("Endresults").innerHTML = "Final Score: " + parseInt(finalScore*100)
+    console.log("final SCore", finalScore)
+    if (finalScore >= 0.8){
+        document.getElementById("kongPerf").style.display = "inline-block";
+        document.getElementById("kongOk").style.display = "none";
+        document.getElementById("kongBad").style.display = "none";
+        document.getElementById("kongSuck").style.display = "none";
+    }
 
+    else if (finalScore >= 0.6){
+        document.getElementById("kongOk").style.display = "inline-block";
+        document.getElementById("kongPerf").style.display = "none";
+        document.getElementById("kongBad").style.display = "none";
+        document.getElementById("kongSuck").style.display = "none";
+    }
+    else if (finalScore >= 0.4){
+        document.getElementById("kongOk").style.display = "none";
+        document.getElementById("kongPerf").style.display = "none";
+        document.getElementById("kongBad").style.display = "inline-block";
+        document.getElementById("kongSuck").style.display = "none";
+    }
+    else if(finalScore >= 0){
+        document.getElementById("kongOk").style.display = "none";
+        document.getElementById("kongPerf").style.display = "none";
+        document.getElementById("kongBad").style.display = "none";
+        document.getElementById("kongSuck").style.display = "inline-block";
+
+    }
+
+    console.log(perf,gre,goo,ok,miss,arrowErrors);
+
+}
 function sendArrow(num, arrowNum) {
     var arrow = document.createElement("div");
     if(num == 0){
@@ -70,7 +141,7 @@ function sendArrow(num, arrowNum) {
                 document.removeEventListener("keydown", rightPressed);
             }
             if (arrowNum == numChildren) {
-                console.log("done");
+                endScreen()
             }
         } else {
             if (pos >= -wid) {
@@ -110,24 +181,72 @@ function map(name) {
 function leftPressed(e) {
     if (e.key == keys[0]) {
         arrowErrors[document.leftArrow[1]] = parseFloat(document.leftArrow[0].style.top) / pixelsPerSec;
+        if (arrowErrors[document.leftArrow[1]] <= 0.005 && arrowErrors[document.leftArrow[1]] >= -0.005){
+            perf++;
+        }
+        else if (arrowErrors[document.leftArrow[1]] <= 0.015 && arrowErrors[document.leftArrow[1]] >= -0.015){
+            gre++;
+        }
+        else if (arrowErrors[document.leftArrow[1]] <= 0.025 && arrowErrors[document.leftArrow[1]] >= -0.025){
+            goo++;
+        }
+        else if (arrowErrors[document.leftArrow[1]] <= 0.045 && arrowErrors[document.leftArrow[1]] >= -0.045){
+            ok++;
+        }
         console.log(arrowErrors[document.leftArrow[1]]);
     }
 }
 function downPressed(e) {
     if (e.key == keys[1]) {
         arrowErrors[document.downArrow[1]] = parseFloat(document.downArrow[0].style.top) / pixelsPerSec;
+        if (arrowErrors[document.downArrow[1]] <= 0.005 && arrowErrors[document.downArrow[1]] >= -0.005){
+            perf++;
+        }
+        else if (arrowErrors[document.downArrow[1]] <= 0.015 && arrowErrors[document.downArrow[1]] >= -0.015){
+            gre++;
+        }
+        else if (arrowErrors[document.downArrow[1]] <= 0.025 && arrowErrors[document.downArrow[1]] >= -0.025){
+            goo++;
+        }
+        else if (arrowErrors[document.downArrow[1]] <= 0.045 && arrowErrors[document.downArrow[1]] >= -0.045){
+            ok++;
+        }
         console.log(arrowErrors[document.downArrow[1]]);
     }
 }
 function upPressed(e) {
     if (e.key == keys[2]) {
         arrowErrors[document.upArrow[1]] = parseFloat(document.upArrow[0].style.top) / pixelsPerSec;
+        if (arrowErrors[document.upArrow[1]] <= 0.005 && arrowErrors[document.upArrow[1]] >= -0.005){
+            perf++;
+        }
+        else if (arrowErrors[document.upArrow[1]] <= 0.015 && arrowErrors[document.upArrow[1]] >= -0.015){
+            gre++;
+        }
+        else if (arrowErrors[document.upArrow[1]] <= 0.025 && arrowErrors[document.upArrow[1]] >= -0.025){
+            goo++;
+        }
+        else if (arrowErrors[document.upArrow[1]] <= 0.045 && arrowErrors[document.upArrow[1]] >= -0.045){
+            ok++;
+        }
         console.log(arrowErrors[document.upArrow[1]]);
     }
 }
 function rightPressed(e) {
     if (e.key == keys[3]) {
         arrowErrors[document.rightArrow[1]] = parseFloat(document.rightArrow[0].style.top) / pixelsPerSec;
+        if (arrowErrors[document.rightArrow[1]] <= 0.005 && arrowErrors[document.rightArrow[1]] >= -0.005){
+            perf++;
+        }
+        else if (arrowErrors[document.rightArrow[1]] <= 0.015 && arrowErrors[document.rightArrow[1]] >= -0.015){
+            gre++;
+        }
+        else if (arrowErrors[document.rightArrow[1]] <= 0.025 && arrowErrors[document.rightArrow[1]] >= -0.025){
+            goo++;
+        }
+        else if (arrowErrors[document.rightArrow[1]] <= 0.045 && arrowErrors[document.rightArrow[1]] >= -0.045){
+            ok++;
+        }
         console.log(arrowErrors[document.rightArrow[1]]);
     }
 }

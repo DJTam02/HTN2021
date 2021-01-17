@@ -18,17 +18,17 @@
                 <label for="volume">VOLUME: </label>
                 <input type="range" id="volume" name="volume" min="0" max="100" step="0.01"><br><br>
                 <label for="time">ARROW DURATION: </label>
-                <input type="range" id="time" name="time" min="0.1" max="2.0" step="0.1"><br>
+                <input type="range" id="time" name="time" min="0.1" max="2.0" step="0.1" oninput="durationC(this.value)"><br>
                 <p>CONTROLS:</p>
                 <div id="controls">
                     <p class="arrowLabel">LEFT ARROW: </p>
-                    <p id="arrowButton0">D</p><br><br>
+                    <p id="arrowButton0" onclick="aC0(this)">d</p><br><br>
                     <p class="arrowLabel">DOWN ARROW: </p>
-                    <p id="arrowButton1">F</p><br><br>
+                    <p id="arrowButton1" onclick ="aC1(this)">f</p><br><br>
                     <p class="arrowLabel">UP ARROW: </p>
-                    <p id="arrowButton2">J</p><br><br>
+                    <p id="arrowButton2" onclick ="aC2(this)">j</p><br><br>
                     <p class="arrowLabel">RIGHT ARROW: </p>
-                    <p id="arrowButton3">K</p>
+                    <p id="arrowButton3" onclick ="aC3(this)">k</p>
                     
                 </div>
             </form>
@@ -48,7 +48,25 @@
             <div id="Right"></div>
         </div>
     </div>
+    <div id="gameEndScreen" style = display:none>
+        <div style = display:inline-block>
+            <h1 id = "Endresults" style="color: white">Final Score:</h1>
+            <p id = "perfs" style="color: rgb(255, 42, 209)"> </p>
+            <p id = "greas" style="color: rgb(192, 0, 0)">Greats: </p>
+            <p id = "goos" style="color: rgb(0, 38, 255)">Goods: </p>
+            <p id = "oks" style="color: rgb(133, 122, 122)">Okays: </p>
+            <p id = "mis" style="color: rgb(121, 73, 73)">Misses: </p>
+        </div>
+        <div style = display:inline-block>
+            <img id="kongPerf" style = display:none; src="images/donkeyPerf.gif"></img>
+            <img id="kongOk" style = display:none; src="images/donkeyOk.gif"></img>
+            <img id="kongBad" style = display:none; src="images/donkeyNah.gif"></img>
+            <img id="kongSuck" style = display:none; src="images/donkeySuck2.gif"></img>
+        </div>
+        <button onclick="goBack()" id="backButtonEnd" style="display: none; position: absolute; top: 50px;">Back</button>
+    </div>
     <script>
+        var keyC;
         var numSec = 1;
         var keys = ["d", "f", "j", "k"];
         var rect = document.getElementById("arrows").getBoundingClientRect();
@@ -56,6 +74,12 @@
         var pixelsPerSec;
         var arrowErrors = [];
         var numChildren = -1;
+        var finalScore = 0;
+        var perf = 0;
+        var gre = 0;
+        var goo = 0;
+        var ok = 0;
+        var miss = 0;
     </script>
     <!-- The core Firebase JS SDK is always required and must be listed first yeet-->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>

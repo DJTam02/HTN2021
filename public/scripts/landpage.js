@@ -92,6 +92,7 @@ function pressButt2(){
     ostarted = false;
     document.getElementById("maps").style.display = "inline-block";
     document.getElementById("settings").style.display = "none";
+    console.log(numSec);
 }
 function getMaps() {
     var ref = database.ref();
@@ -149,8 +150,8 @@ function changeToMap(mapName) {
         }
     }, 10);
     bod.style.backgroundImage = 'url("../images/testBG.jpg")';
-    numSec = 1;
-    keys = ["d", "f", "j", "k"];
+    console.log(numSec)
+    console.log(keys)
     rect = document.getElementById("arrows").getBoundingClientRect();
     wid = document.getElementById("arrows").offsetWidth / 4;
     pixelsPerSec = (rect.top + w) / numSec;
@@ -182,7 +183,15 @@ function changeToMenu() {
     document.getElementById("box").style.display = "block";
     document.getElementById("board").style.display = "none";
     document.getElementById("backButton").style.display = "none";
+    document.getElementById("backButtonEnd").style.display = "none";
+    document.getElementById("gameEndScreen").style.display = "none";
     document.body.style.backgroundImage = 'none';
+    finalScore = 0;
+    perf = 0;
+    gre = 0;
+    goo = 0;
+    ok = 0;
+    miss = 0;
     var op = 0;
     var bod = document.body;
     var transition = setInterval(function() {
@@ -195,3 +204,56 @@ function changeToMenu() {
         }
     }, 10);
 }
+
+function durationC(DC){
+    numSec = DC;
+}
+
+function aC0(e){
+e.innerHTML = "Press any key";
+document.addEventListener("keydown", aCC0);
+}
+
+function aCC0(e){
+keyC = e.key;
+keys[0]= keyC
+document.getElementById("arrowButton0").innerHTML = keys[0];
+document.removeEventListener("keydown",aCC0);
+console.log(keys)
+}
+
+function aC1(e){
+    e.innerHTML = "Press any key";
+    document.addEventListener("keydown", aCC1);
+    }
+    
+function aCC1(e){
+keyC = e.key;
+keys[1]= keyC
+document.getElementById("arrowButton1").innerHTML = keys[1];
+document.removeEventListener("keydown",aCC1);
+}
+
+function aC2(e){
+e.innerHTML = "Press any key";
+document.addEventListener("keydown", aCC2);
+}
+
+function aCC2(e){
+keyC = e.key;
+keys[2]= keyC
+document.getElementById("arrowButton2").innerHTML = keys[2];
+document.removeEventListener("keydown",aCC2);
+}
+
+function aC3(e){
+    e.innerHTML = "Press any key";
+    document.addEventListener("keydown", aCC3);
+    }
+    
+function aCC3(e){
+keyC = e.key;
+keys[3]= keyC
+document.getElementById("arrowButton3").innerHTML = keys[3];
+document.removeEventListener("keydown",aCC3);
+    }

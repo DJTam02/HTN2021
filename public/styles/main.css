@@ -33,6 +33,24 @@ body {
 #tbl {
     border-collapse: collapse;
 }
+#Endresults {
+  font-size: 100px;
+}
+#perfs{
+  font-size: 70px;
+}
+#greas{
+  font-size: 70px;
+}
+#goos{
+  font-size: 70px;
+}
+#oks{
+  font-size: 70px;
+}
+#mis{
+  font-size: 70px;
+}
 #board {
     background-color: blue;
     display: block;
@@ -52,29 +70,51 @@ body {
 #start:focus{
     outline: none;
 }
+#backButtonEnd{
+  font-size:100px;
+  right:10%;
+}
 #arrowButton0{
-  text-indent: 100%;
+  
   color:rgb(74, 168, 255);
   font-weight: bold;
 }
+#kongPerf{
+  margin-left:60%;
+  margin-top: 50%;
+}
+#kongOk{
+  margin-left:60%;
+  margin-top: 50%;
+}
+#kongBad{
+  margin-left:60%;
+  margin-top: 50%;
+}
+#kongSuck{
+  margin-left:60%;
+  margin-top: 50%;
+}
 #arrowButton1{
-  text-indent: 0%;
+
   color:red;
   font-weight: bold;
 }
 #arrowButton2{
-  text-indent: 320%;
+
   color:yellow;
   font-weight: bold;
 }
 #arrowButton3{
-  text-indent: 0%;
+
   color:green;
   font-weight: bold;
 }
 #kong{
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
+  margin-left:400px;
+  animation: fadein 1s ease-in-out;
 }
 
 #start {
