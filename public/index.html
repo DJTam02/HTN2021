@@ -10,9 +10,31 @@
     <h1 style="color: aqua;">game of the year</h1>
     <div id = "box" style="background-color: rgba(128, 128, 128, 0.233)";>
         <button id = "options" style = "background-color: transparent; display:none;" > OPTIONS </button>
-        
         <button id ="start" style = "background-color: transparent;"> START </button>
 
+        <div id="settings">
+            <form onsubmit="return settingsSave();">
+                <label for="volume">VOLUME: </label>
+                <input type="range" id="volume" name="volume" min="0" max="100" step="0.01"><br><br>
+                <label for="time">ARROW DURATION: </label>
+                <input type="range" id="time" name="time" min="0.1" max="2.0" step="0.1"><br>
+                <p>CONTROLS:</p>
+                <div id="controls">
+                    <p class="arrowLabel">LEFT ARROW: </p>
+                    <p id="arrowButton0">d</p><br><br>
+                    <p class="arrowLabel">DOWN ARROW: </p>
+                    <p id="arrowButton1">f</p><br><br>
+                    <p class="arrowLabel">UP ARROW: </p>
+                    <p id="arrowButton2">j</p><br><br>
+                    <p class="arrowLabel">RIGHT ARROW: </p>
+                    <p id="arrowButton3">k</p>
+                </div>
+                <input type="submit" value="Save Settings">
+            </form>
+        </div>
+        <div id="maps">
+            <h1>No Maps Yet</h1>
+        </div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first yeet-->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
@@ -41,11 +63,27 @@
 
         var database = firebase.database();
     </script>
-    <script> var w = window.outerWidth; var h = window.outerHeight;</script>
-    <script> var started = false; var oStarted = false;</script>
+    <script> 
+        var w = window.innerWidth; 
+        var h = window.innerHeight;
+    </script>
+    <script> 
+        var started = false; 
+        var oStarted = false;
+    </script>
     <script src="scripts/db.js"></script>
     <script src="scripts/landpage.js"></script>
-    <script> document.getElementById("start").addEventListener("click", fade);document.getElementById("start").addEventListener("click", pressButt); document.getElementById("start").addEventListener("mouseover", startButt); document.getElementById("start").addEventListener("mouseleave", stopButt);</script>
-    <script> document.getElementById("options").addEventListener("click", OptionP);document.getElementById("start").addEventListener("click", pressButt2);document.getElementById("options").addEventListener("mouseover",optButt); document.getElementById("options").addEventListener("mouseleave",optStopButt)</script>
+    <script> 
+        document.getElementById("start").addEventListener("click", fade);
+        document.getElementById("start").addEventListener("click", pressButt); 
+        document.getElementById("start").addEventListener("mouseover", startButt); 
+        document.getElementById("start").addEventListener("mouseleave", stopButt);
+    </script>
+    <script> 
+        document.getElementById("options").addEventListener("click", OptionP);
+        document.getElementById("start").addEventListener("click", pressButt2);
+        document.getElementById("options").addEventListener("mouseover", optButt); 
+        document.getElementById("options").addEventListener("mouseleave", optStopButt);
+    </script>
 </body>
 </html>
