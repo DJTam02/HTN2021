@@ -142,6 +142,7 @@ function changeToMap(mapName) {
     document.getElementById("backButton").style.display = "block";
     var op = 0;
     var bod = document.body;
+    bod.style.height = "100%";
     var transition = setInterval(function() {
         if (op == 100) {
             clearInterval(transition);
@@ -151,20 +152,30 @@ function changeToMap(mapName) {
             bod.style.opacity = op + "%";
         }
     }, 10);
+    console.log(mapName);
     var mapRef = database.ref(mapName);
-    var backName = mapRef.child("Background").val();
-    var filename = mapRef.child("Filename").val();
-    bod.style.backgroundImage = 'url("../mapFiles/' + backName + '")';
-    console.log(numSec)
-    console.log(keys)
-    rect = document.getElementById("arrows").getBoundingClientRect();
-    wid = document.getElementById("arrows").offsetWidth / 4;
-    pixelsPerSec = (rect.top + w) / numSec;
-    arrowErrors = [];
-    numChildren = -1;
-    document.addEventListener("keydown", pressed);
-    document.addEventListener("keyup", lift);
-    playStart(mapName, filename);
+    var backRef = mapRef.child("Background");
+    var backName;
+    backRef.once("value", function(snapshot) {
+        backName = snapshot.val()
+        var fileRef = mapRef.child("Filename");
+        var filename;
+        fileRef.once("value", function(ss) {
+            filename = ss.val();
+            console.log(backName, filename);
+            bod.style.backgroundImage = 'url("../mapFiles/' + backName + '")';
+            console.log(numSec)
+            console.log(keys)
+            rect = document.getElementById("arrows").getBoundingClientRect();
+            wid = document.getElementById("arrows").offsetWidth / 4;
+            pixelsPerSec = (rect.top + w) / numSec;
+            arrowErrors = [];
+            numChildren = -1;
+            document.addEventListener("keydown", pressed);
+            document.addEventListener("keyup", lift);
+            playStart(mapName, filename);
+        });
+    });
 }
 
 function playStart(mapName, filename) {
@@ -225,7 +236,9 @@ function changeToMenu() {
         }
     }, 10);
 }
-
+function changeVol(volume) {
+    vol = volume / 100;
+}
 function durationC(DC){
     numSec = DC;
 }

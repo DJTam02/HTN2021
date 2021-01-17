@@ -139,9 +139,6 @@ function sendArrow(num, arrowNum) {
             } else {
                 document.removeEventListener("keydown", rightPressed);
             }
-            if (arrowNum == numChildren) {
-                endScreen()
-            }
         } else {
             if (pos >= -wid) {
                 if (num == 0) {
@@ -165,6 +162,14 @@ function sendArrow(num, arrowNum) {
 }
 
 function map(name, filename) {
+    var audio = new Audio('../mapFiles/' + filename);
+    audio.volume = vol;
+    audio.addEventListener("ended", function() {
+        audio.currentTime = 0;
+        endScreen();
+    });
+    console.log(audio.volume);
+    audio.play();
     var mapRef = database.ref(name);
     var arrowRef = mapRef.child("Arrows");
     arrowRef.once("value", function(snapshot) {
