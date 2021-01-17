@@ -69,7 +69,7 @@ function toEndScreen(){
     document.getElementById("goos").innerHTML = "Goods: " + goo
     document.getElementById("oks").innerHTML = "Okays: "  + ok
     document.getElementById("mis").innerHTML = "Misses: " + miss
-    finalScore = (perf + gre*(0.7)+goo*(0.5)+ok*(0.3))/5;
+    finalScore = (perf + gre*(0.7)+goo*(0.5)+ok*(0.3))/numChildren;
     document.getElementById("Endresults").innerHTML = "Final Score: " + parseInt(finalScore*100)
     console.log("final SCore", finalScore)
     if (finalScore >= 0.8){
