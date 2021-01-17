@@ -280,6 +280,8 @@ function displayMapMaker(songName, bgImage) {
             audio.setAttribute("preload", "metadata");
             document.getElementById("mapMaker").appendChild(audio);
             audio.onloadedmetadata = function () {
+                document.song = songName;
+                document.back = bgImage;
                 loadMapMaker(songName, audio.duration, bgImage);
             }
         } else {
@@ -290,7 +292,180 @@ function displayMapMaker(songName, bgImage) {
 }
 
 function loadMapMaker(songName, length, bgImage) {
-    console.log("here");
+    length = Math.floor(length);
+    console.log("duration: " + length);
     document.body.style.backgroundImage = 'url("../mapFiles/' + bgImage + '")';
-    
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.removeProperty("height");
+    var board = document.createElement("div");
+    board.id = "board2";
+    document.body.appendChild(board);
+    for (let i = 0; i < length; i++) {
+        let row = document.createElement("div");
+        for (let j = 0; j < 4; j++) {
+            let square = document.createElement("div");
+            square.classList.add("timingBox");
+            row.appendChild(square);
+        }
+        row.classList.add("timingRow");
+        board.appendChild(row);
+    }
+    boxProp = document.getElementsByClassName("timingBox")[4].getBoundingClientRect();
+    boxLength = boxProp.top;
+    board.addEventListener("click", addArrow);
+    console.log("children: " + board.childElementCount);
+}
+
+function addArrow(e) {
+    if (e.target.classList.contains("timingBox")) {
+        var boardProp = document.getElementById("board2").getBoundingClientRect();
+        var boardEnd = boardProp.left + 1;
+        var boxRect = e.target.getBoundingClientRect();
+        var newArrow = document.createElement("div");
+        if (boxRect.left == boardEnd) {
+            newArrow.classList.add("newArrowL");
+        } else if (boxRect.left == boardEnd + boxLength - 2) {
+            newArrow.classList.add("newArrowD");
+        } else if (boxRect.left == boardEnd + (2 * boxLength) - 4) {
+            newArrow.classList.add("newArrowU");
+        } else {
+            newArrow.classList.add("newArrowR");
+        }
+        newArrow.style.left = (boxRect.left - boardEnd) + "px";
+        newArrow.style.top = e.clientY + "px";
+        newArrow.addEventListener("mousedown", selectArrow);
+        newArrow.addEventListener("mouseover", updateSeconds);
+        newArrow.addEventListener("mouseout", function() {
+            document.getElementById("info").style.display = "none";
+        });
+        if (!willOverlap(e.clientY, newArrow.classList.item(0))) {
+            document.getElementById("board2").appendChild(newArrow);
+        } else {
+            alert("You cannot overlap your arrows!");
+        }
+    }
+}
+function updateSeconds(e, selectedArrow) {
+    document.getElementById("info").style.display = "block";
+    var box;
+    if (selectedArrow != undefined) {
+        box = selectedArrow.getBoundingClientRect();
+    } else {
+        box = e.target.getBoundingClientRect();
+    }
+    document.getElementById("sec").innerHTML = Math.round((box.top / boxLength) * 1000) / 1000;
+}
+function selectArrow(e) {
+    mousedOver = false;
+    document.selectedArrow = e.target;
+    document.original = e.target.style.top;
+    document.addEventListener("mouseup", releaseArrow);
+    document.addEventListener("mousemove", moveArrow);
+}
+
+function moveArrow(e) {
+    document.selectedArrow.style.top = e.clientY + "px";
+    updateSeconds(e, document.selectedArrow)
+}
+
+function releaseArrow(e) {
+    console.log(document.original);
+    document.removeEventListener("mousemove", moveArrow);
+    document.removeEventListener("mouseup", releaseArrow);
+    if (overlapping(document.selectedArrow)) {
+        alert("You cannot overlap your arrows!");
+        document.selectedArrow.style.top = document.original;
+    }
+}
+function overlapping(arrow) {
+    var cName = arrow.classList.item(0);
+    var els = document.getElementsByClassName(cName);
+    for (let i = 0; i < els.length; i++) {
+        if (els[i] != arrow) {
+            let rect1 = els[i].getBoundingClientRect();
+            let rect2 = arrow.getBoundingClientRect();
+            if (!(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}   
+function willOverlap(pos, cName) {
+    var els = document.getElementsByClassName(cName);
+    for (let i = 0; i < els.length; i++) {
+        let rect1 = els[i].getBoundingClientRect();
+        console.log(rect1.top, rect1.bottom, pos, boxLength);
+        if (pos + boxLength >= rect1.top && pos + boxLength <= rect1.bottom) {
+            return true;
+        }
+    }
+    return false;
+}
+function saveMap() {
+    var name = document.getElementById("mapName").value;
+    var els = document.getElementById("board2").childNodes;
+    var arrows = [];
+    var counter
+    for (let i = 0; i < els.length; i++) {
+        if (!els[i].classList.contains("timingRow")) {
+            arrows.push(els[i]);
+        }
+    }
+    arrows.sort((a, b) => (a.style.top > b.style.top) ? 1 : -1);
+    var arrowsList = {}
+    for (let i = 0; i < arrows.length; i++) {
+        let boardProp = document.getElementById("board2").getBoundingClientRect();
+        let boardEnd = boardProp.left + 1;
+        let box = arrows[i].getBoundingClientRect();
+        arrowsList[i + 1] = {
+            Length: 0,
+            Type: Math.round((box.left - boardEnd) / (boxLength - 1)),
+            Time: (Math.round((box.top / boxLength) * 1000))
+        }
+    }
+    var mapData = {
+        Filename: document.song,
+        Background: document.back,
+        Arrows: arrowsList
+    };
+    firebase.database().ref().update({
+        [name]: mapData
+    });
+    alert("Map Saved!");
+    backToMenu();
+}
+
+function backToMenu() {
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            showMenu();
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+function showMenu() {
+    document.getElementById("title").style.display = "block";
+    document.getElementById("box").style.display = "block";
+    document.getElementById("board2").remove();
+    document.getElementById("maps").innerHTML = "";
+    document.getElementById("mapMaker").style.display = "none";
+    var op = 0;
+    var bod = document.body;
+    bod.style.backgroundImage = "none";
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
 }

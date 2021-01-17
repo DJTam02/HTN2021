@@ -59,7 +59,16 @@
         </form>
     </div>
     <div id="mapMaker">
-
+        <div id="info">
+            <h1>Arrow Information</h1>
+            <p style="display: inline-block;">Seconds:</p>
+            <p style="display: inline-block;" id="sec"></p>
+        </div>
+        <form onsubmit="saveMap(); return false;" id="saveForm">
+            <label for="mapName">Map Name:</label>
+            <input type="text" id="mapName" name="mapName"><br><br>
+            <input type="submit" value="Save Map">
+        </form>
     </div>
     <script>
         var numSec = 1;
@@ -69,6 +78,8 @@
         var pixelsPerSec;
         var arrowErrors = [];
         var numChildren = -1;
+        var boxLength;
+        var mousedOver = false;
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first yeet-->
