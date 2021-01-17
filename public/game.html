@@ -17,6 +17,12 @@
     </div>
     <script>
         var numSec = 1;
+        var keys = ["d", "f", "j", "k"];
+        var rect = document.getElementById("arrows").getBoundingClientRect();
+        var w = document.getElementById("arrows").offsetWidth / 4;
+        var pixelsPerSec = (rect.top + w) / numSec;
+        var arrowErrors = [];
+        var numChildren = -1;
     </script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>

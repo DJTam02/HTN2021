@@ -31,10 +31,7 @@ html {
     width: 25%;
     padding-top: 25%;
     display: inline-block;
-    background-image: url("../images/lol.JPG");
-}
-#Left {
-    background-image: url("../images/lol.JPG");
+    border: 1px solid green;
 }
 .newArrow {
     display: inline-block;
