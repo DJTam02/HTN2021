@@ -19,6 +19,15 @@
   transition: 0.5s;
   animation: 0.75s ease-in-out 0s infinite alternate none running stopOGlow;
 }
+#info {
+  background-color: white; 
+  border: 1px solid black; 
+  border-radius: 5px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
 #tbl td, #tbl, #tbl th {
     border: solid 1px rgb(172, 231, 33);
 }
@@ -214,6 +223,7 @@ body {
 #maps {
   display: none;
   width: 100%;
+  animation: fadein 0.25s ease-in-out;
 }
 .arrowLabel {
   display: inline-block;
@@ -225,4 +235,15 @@ body {
 }
 #controls {
   padding-left: 50px;
+}
+#upload {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+#mapMaker {
+  display: none;
 }

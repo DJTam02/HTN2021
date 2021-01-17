@@ -12,6 +12,35 @@ html {
     position: relative;
     width: 25%;
 }
+#saveForm {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+}
+#board2 {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    height: 100%;
+    margin: auto;
+    background-color: black;
+    position: relative;
+    width: 25%;
+    z-index: 0;
+}
+.timingBox {
+    border: 1px solid white;
+    display: inline-block;
+    width: 25%;
+    padding-top: 25%;
+}
+.timingRow {
+    display: flex;
+    justify-content: space-between;
+}
 #arrows {
     position: absolute;
     left: 50%;
