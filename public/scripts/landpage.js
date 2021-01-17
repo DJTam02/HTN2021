@@ -106,12 +106,55 @@ function getMaps() {
             head.innerHTML = child.key;
             innerDiv.appendChild(head);
             div.appendChild(innerDiv);
-            div.addEventListener("click", mapSelected);
+            innerDiv.addEventListener("click", mapSelected);
             document.getElementById("maps").appendChild(div);
             //console.log(child.key + ": " + child.child("Filename").val());
         });
     });
 }
 function mapSelected(e) {
-    console.log(e.target);
+    var mapName = "";
+    if (e.target.firstChild.innerHTML == undefined) {
+        mapName = e.target.innerHTML;
+    } else {
+        mapName = e.target.firstChild.innerHTML;
+    }
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            changeToMap(mapName);
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+function changeToMap(mapName) {
+    document.getElementById("title").style.display = "none";
+    document.getElementById("box").style.display = "none";
+    document.getElementById("board").style.display = "block";
+    var op = 0;
+    var bod = document.body;
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+    bod.style.backgroundImage = 'url("../images/testBG.jpg")';
+    numSec = 1;
+    keys = ["d", "f", "j", "k"];
+    rect = document.getElementById("arrows").getBoundingClientRect();
+    wid = document.getElementById("arrows").offsetWidth / 4;
+    pixelsPerSec = (rect.top + w) / numSec;
+    arrowErrors = [];
+    numChildren = -1;
+    document.addEventListener("keydown", pressed);
+    document.addEventListener("keyup", lift);
 }
