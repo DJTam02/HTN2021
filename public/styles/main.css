@@ -162,6 +162,7 @@ body {
 }
 #maps {
   display: none;
+  width: 100%;
 }
 .arrowLabel {
   display: inline-block;
