@@ -34,6 +34,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  color: white;
+  font-family: Arial;
 }
 #tbl td, #tbl, #tbl th {
     border: solid 1px rgb(172, 231, 33);
@@ -41,7 +43,6 @@
 body {
   margin: 0px;
   min-width: 1127px;
-  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

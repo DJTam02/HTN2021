@@ -14,7 +14,6 @@ function pressed(e) {
             document.getElementById("Right").style.backgroundImage = 'url("../images/Arrows/Rarrow2.png")';
             break;
     }
-    if (e.key == "e") { map("TestMap1") }
 }
 function lift(e) {
     switch (e.key) {
@@ -165,7 +164,7 @@ function sendArrow(num, arrowNum) {
     }, 1);
 }
 
-function map(name) {
+function map(name, filename) {
     var mapRef = database.ref(name);
     var arrowRef = mapRef.child("Arrows");
     arrowRef.once("value", function(snapshot) {

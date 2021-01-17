@@ -151,7 +151,10 @@ function changeToMap(mapName) {
             bod.style.opacity = op + "%";
         }
     }, 10);
-    bod.style.backgroundImage = 'url("../images/testBG.jpg")';
+    var mapRef = database.ref(mapName);
+    var backName = mapRef.child("Background").val();
+    var filename = mapRef.child("Filename").val();
+    bod.style.backgroundImage = 'url("../mapFiles/' + backName + '")';
     console.log(numSec)
     console.log(keys)
     rect = document.getElementById("arrows").getBoundingClientRect();
@@ -161,17 +164,22 @@ function changeToMap(mapName) {
     numChildren = -1;
     document.addEventListener("keydown", pressed);
     document.addEventListener("keyup", lift);
-    playStart(mapName);
+    playStart(mapName, filename);
 }
 
-function playStart(mapName) {
+function playStart(mapName, filename) {
     document.getElementById("count").style.display = "block";
-    for (let i = 3; i > 0; i--) {
-        setTimeout(function () {
-            document.getElementById("count").innerHTML = i;
-        });
-    }
-    console.log("play");
+    time = 3;
+    var intr = setInterval(function() {
+        if (time == 0) {
+            clearInterval(intr);
+            document.getElementById("count").style.display = "none";
+            map(mapName, filename);
+        } else {
+            document.getElementById("count").innerHTML = time;
+            time--;
+        }
+    }, 1000);
 }
 function goBack() {
     getMaps();
@@ -402,8 +410,9 @@ function addArrow(e) {
         } else {
             newArrow.classList.add("newArrowR");
         }
+        console.log("1" + e.target.offsetLeft + " " + e.target.offsetTop)
         newArrow.style.left = (boxRect.left - boardEnd) + "px";
-        newArrow.style.top = e.clientY + "px";
+        newArrow.style.top = (e.target.offsetTop + (e.clientY - boxRect.top)) + "px";
         newArrow.addEventListener("mousedown", selectArrow);
         newArrow.addEventListener("mouseover", updateSeconds);
         newArrow.addEventListener("mouseout", function() {
@@ -440,7 +449,9 @@ function selectArrow(e) {
 }
 
 function moveArrow(e) {
-    document.selectedArrow.style.top = e.clientY + "px";
+    var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    console.log(scrollTop);
+    document.selectedArrow.style.top = (scrollTop + e.clientY) + "px";
     updateSeconds(e, document.selectedArrow)
 }
 
@@ -482,7 +493,6 @@ function saveMap() {
     var name = document.getElementById("mapName").value;
     var els = document.getElementById("board2").childNodes;
     var arrows = [];
-    var counter
     for (let i = 0; i < els.length; i++) {
         if (!els[i].classList.contains("timingRow")) {
             arrows.push(els[i]);
