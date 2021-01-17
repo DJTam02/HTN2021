@@ -28,6 +28,13 @@
   left: 0px;
   display: none;
 }
+#count {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
 #tbl td, #tbl, #tbl th {
     border: solid 1px rgb(172, 231, 33);
 }

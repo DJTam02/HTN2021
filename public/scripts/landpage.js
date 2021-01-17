@@ -161,8 +161,18 @@ function changeToMap(mapName) {
     numChildren = -1;
     document.addEventListener("keydown", pressed);
     document.addEventListener("keyup", lift);
+    playStart(mapName);
 }
 
+function playStart(mapName) {
+    document.getElementById("count").style.display = "block";
+    for (let i = 3; i > 0; i--) {
+        setTimeout(function () {
+            document.getElementById("count").innerHTML = i;
+        });
+    }
+    console.log("play");
+}
 function goBack() {
     getMaps();
     document.removeEventListener("keydown", pressed);
@@ -417,11 +427,16 @@ function updateSeconds(e, selectedArrow) {
     document.getElementById("sec").innerHTML = Math.round((box.top / boxLength) * 1000) / 1000;
 }
 function selectArrow(e) {
-    mousedOver = false;
-    document.selectedArrow = e.target;
-    document.original = e.target.style.top;
-    document.addEventListener("mouseup", releaseArrow);
-    document.addEventListener("mousemove", moveArrow);
+    if (e.button == 0) {
+        mousedOver = false;
+        document.selectedArrow = e.target;
+        document.original = e.target.style.top;
+        document.addEventListener("mouseup", releaseArrow);
+        document.addEventListener("mousemove", moveArrow);
+    } else if (e.button == 2) {
+        e.target.remove();
+        document.getElementById("info").style.display = "none";
+    }
 }
 
 function moveArrow(e) {
