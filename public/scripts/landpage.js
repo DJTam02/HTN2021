@@ -33,9 +33,9 @@ function OptionP(){
     document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
     document.getElementById("settings").style.display = "inline-block";
     document.getElementById("maps").style.display = "none";
+    document.getElementById("maps").innerHTML = "";
 }
 function pressButt(){
-    getMaps();
     started = true;
     var opt = document.getElementById("options");
     var butt = document.getElementById("start");
@@ -92,6 +92,7 @@ function pressButt2(){
     ostarted = false;
     document.getElementById("maps").style.display = "inline-block";
     document.getElementById("settings").style.display = "none";
+    getMaps();
 }
 function getMaps() {
     var ref = database.ref();
@@ -113,6 +114,7 @@ function getMaps() {
     });
 }
 function mapSelected(e) {
+    document.getElementById("maps").innerHTML = "";
     var mapName = "";
     if (e.target.firstChild.innerHTML == undefined) {
         mapName = e.target.innerHTML;
@@ -161,6 +163,7 @@ function changeToMap(mapName) {
 }
 
 function goBack() {
+    getMaps();
     document.removeEventListener("keydown", pressed);
     document.removeEventListener("keyup", lift);
     var bod = document.body;
@@ -194,4 +197,100 @@ function changeToMenu() {
             bod.style.opacity = op + "%";
         }
     }, 10);
+}
+
+function mapMaker() {
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            uploadSong();
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+function uploadSong() {
+    document.getElementById("title").style.display = "none";
+    document.getElementById("box").style.display = "none";
+    document.getElementById("upload").style.display = "block";
+    var op = 0;
+    var bod = document.body;
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+
+function downloadSong() {
+    var formData = new FormData();
+    formData.append('music', document.getElementById("music").files[0]);
+    formData.append('image', document.getElementById("background").files[0]);
+    $.ajax({
+        url: "/download",
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data) {
+            songUploaded(document.getElementById("music").files[0].name, document.getElementById("background").files[0].name);
+        },
+        error: function(data) {
+            alert("There was an error uploading your song.")
+        }
+    });   
+    return false
+}
+
+function songUploaded(songName, bgImage) {
+    var bod = document.body;
+    var op = 100;
+    var transition = setInterval(function() {
+        if (op == 0) {
+            clearInterval(transition);
+            bod.style.opacity = "0%";
+            displayMapMaker(songName, bgImage);
+        } else {
+            op--;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+
+function displayMapMaker(songName, bgImage) {
+    document.getElementById("upload").style.display = "none";
+    document.getElementById("mapMaker").style.display = "block";
+    var op = 0;
+    var bod = document.body;
+    var transition = setInterval(function() {
+        if (op == 100) {
+            clearInterval(transition);
+            bod.style.opacity = "100%";
+            var audio = document.createElement("audio");
+            audio.src = "mapFiles/" + songName;
+            audio.setAttribute("preload", "metadata");
+            document.getElementById("mapMaker").appendChild(audio);
+            audio.onloadedmetadata = function () {
+                loadMapMaker(songName, audio.duration, bgImage);
+            }
+        } else {
+            op++;
+            bod.style.opacity = op + "%";
+        }
+    }, 10);
+}
+
+function loadMapMaker(songName, length, bgImage) {
+    console.log("here");
+    document.body.style.backgroundImage = 'url("../mapFiles/' + bgImage + '")';
+    
 }
