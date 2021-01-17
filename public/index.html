@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node App!</title>
     <link rel="stylesheet" href="styles/main.css"></link>
+    <link rel="stylesheet" href="styles/game.css"></link>
 </head>
 <body style="background-color: black;">
-    <h1 style="color: aqua;">game of the year</h1>
+    <h1 style="color: aqua;" id="title">game of the year</h1>
     <div id = "box" style="background-color: rgba(128, 128, 128, 0.233)";>
         <button id = "options" style = "background-color: transparent; display:none;" > OPTIONS </button>
         <button id ="start" style = "background-color: transparent;"> START </button>
@@ -35,9 +36,25 @@
             </form>
         </div>
         <div id="maps">
-            <h1>No Maps Yet</h1>
         </div>
     </div>
+    <div id="board">
+        <div id="arrows">
+            <div id="Left"></div>
+            <div id="Down"></div>
+            <div id="Up"></div>
+            <div id="Right"></div>
+        </div>
+    </div>
+    <script>
+        var numSec = 1;
+        var keys = ["d", "f", "j", "k"];
+        var rect = document.getElementById("arrows").getBoundingClientRect();
+        var wid = document.getElementById("arrows").offsetWidth / 4;
+        var pixelsPerSec = (rect.top + w) / numSec;
+        var arrowErrors = [];
+        var numChildren = -1;
+    </script>
     <!-- The core Firebase JS SDK is always required and must be listed first yeet-->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
@@ -74,6 +91,7 @@
         var oStarted = false;
     </script>
     <script src="scripts/db.js"></script>
+    <script src="scripts/game.js"></script>
     <script src="scripts/landpage.js"></script>
     <script> 
         document.getElementById("start").addEventListener("click", fade);

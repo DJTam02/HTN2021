@@ -1,4 +1,4 @@
-document.addEventListener("keydown", pressed);
+
 function pressed(e) {
     if (e.key == "e") {
         map("TestMap1");
@@ -18,7 +18,6 @@ function pressed(e) {
             break;
     }
 }
-document.addEventListener("keyup", lift);
 function lift(e) {
     switch (e.key) {
         case keys[0]:
@@ -51,15 +50,15 @@ function sendArrow(num, arrowNum) {
         arrow.classList.add("newArrowR");
     }
     
-    
-    arrow.style.left = (num * w) + "px";
-    arrow.style.top = -(rect.top + w + 1) + "px";
+    arrow.style.left = (num * wid) + "px";
+    arrow.style.top = -(rect.top + wid + 1) + "px";
+    console.log(wid);
     document.getElementById("arrows").appendChild(arrow);
     var pos = arrow.offsetTop;
-    var totalDist = window.innerHeight + w;
+    var totalDist = window.innerHeight + wid;
     //var start = Date.now();
     var interval = setInterval(function () {
-        if (pos >= window.innerHeight - rect.top - w) {
+        if (pos >= window.innerHeight - rect.top - wid) {
             //let end = Date.now();
             //console.log(end - start);
             clearInterval(interval);
@@ -77,7 +76,7 @@ function sendArrow(num, arrowNum) {
                 console.log("done");
             }
         } else {
-            if (pos >= -w) {
+            if (pos >= -wid) {
                 if (num == 0) {
                     document.leftArrow = [arrow, arrowNum];
                     document.addEventListener("keydown", leftPressed);
@@ -117,7 +116,6 @@ function leftPressed(e) {
         console.log(arrowErrors[document.leftArrow[1]]);
     }
 }
-
 function downPressed(e) {
     if (e.key == keys[1]) {
         arrowErrors[document.downArrow[1]] = parseFloat(document.downArrow[0].style.top) / pixelsPerSec;
