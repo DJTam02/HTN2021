@@ -1,24 +1,13 @@
 function startButt(){
-    if(started == true){
-
-    }
-    else{
-
+    if(started == false){
         document.getElementById("start").style.animation = 'startGlow 0.75s ease-in-out infinite alternate';
-
-    document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
+        document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
     }
 }
 function stopButt(){
-    if (started == true){
-
-    }
-    else{
+    if (started == false){
         document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
-
-
         document.getElementById("options").style.animation = 'startOGlow 0.75s ease-in-out infinite alternate';
-
     }
 }
 function fade(){
@@ -28,29 +17,22 @@ function fade(){
 function optButt(){
     document.getElementById("options").style.animation = 'startOGlow 0.75s ease-in-out infinite alternate';
     document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out';
-
 }
 function optStopButt(){
     if (oStarted == false){
-        console.log("yeet");
         document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
     }
-    else{
-
-    }
     if(started == true){
-
         document.getElementById("start").style.animation = 'startGlow 0.75s ease-in-out infinite alternate';
-
-    document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
+        document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
     }  
 }
 function OptionP(){
     oStarted = true;
     started = false;
-    console.log(oStarted);
     document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
-    
+    document.getElementById("settings").style.display = "inline-block";
+    document.getElementById("maps").style.display = "none";
 }
 function pressButt(){
     started = true;
@@ -72,7 +54,7 @@ function pressButt(){
         if (postT <= endT && postL <= endW){
             clearInterval(interval);
             butt.style.top = endT + 'px';
-            butt.style.left = endW + 'px';
+            butt.style.left = "5%";
         }
         else{
     
@@ -84,25 +66,29 @@ function pressButt(){
             butt.style.fontSize = font + 'px';
         }
     }, 10)
-    var boxEndL = w - 230;
-    var boxEndT = h - 400;
+    var boxPadding = 50;
+    var boxEndL = w - (w / 10);
+    var boxEndT = h - 300;
     var boxT = 0;
     var boxL = 0;
-    var interval = setInterval(function(){
+    console.log(boxEndL, boxEndT);
+    var interval2 = setInterval(function(){
         if (boxT >= boxEndT && boxL >= boxEndL){
-            clearInterval(interval);
-        }
-        else{
-
+            clearInterval(interval2);
+            bux.style.width = "90%";
+            bux.style.minWidth = "1015px";
+        } else{
             boxT = boxT + (boxEndT )/100;
             boxL = boxL + (boxEndL )/100;
             bux.style.height = boxT +'px';
             bux.style.width = boxL + 'px';
         }
 
-    }, 10)
+    }, 10);
 }
 function pressButt2(){
     started = true;
     ostarted = false;
+    document.getElementById("maps").style.display = "inline-block";
+    document.getElementById("settings").style.display = "none";
 }

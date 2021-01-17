@@ -1,6 +1,10 @@
 #tbl td, #tbl, #tbl th {
     border: solid 1px rgb(172, 231, 33);
 }
+body {
+  margin: 0px;
+  min-width: 1127px;
+}
 #tbl {
     border-collapse: collapse;
 }
@@ -92,7 +96,7 @@
 #options{
     position:absolute;
     top: 5%;
-    left: 50%;
+    right: 5%;
     padding:32px 16px;
     text-align: center;
     border: none;
@@ -104,5 +108,25 @@
     width: 1px; 
     height: 1px;
     margin-top: 170px;
-    margin-left: 115px;
+    margin-left: 5%;
+}
+#settings {
+  display: none;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  font-family: Arial;
+}
+#maps {
+  display: none;
+}
+.arrowLabel {
+  display: inline-block;
+  margin: 0px;
+}
+#arrowButton0, #arrowButton1, #arrowButton2, #arrowButton3 {
+  display: inline-block;
+  margin: 0px;
+}
+#controls {
+  padding-left: 50px;
 }
