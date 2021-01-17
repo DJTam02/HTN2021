@@ -161,6 +161,8 @@ function changeToMap(mapName) {
 }
 
 function goBack() {
+    document.removeEventListener("keydown", pressed);
+    document.removeEventListener("keyup", lift);
     var bod = document.body;
     var op = 100;
     var transition = setInterval(function() {
