@@ -1,23 +1,64 @@
 function startButt(){
-    document.getElementById("start").style.animation = 'startStartGlow 0.75s ease-in-out infinite alternate';
-    setTimeout(function (){
+    if(started == true){
+
+    }
+    else{
+
         document.getElementById("start").style.animation = 'startGlow 0.75s ease-in-out infinite alternate';
-    }, 750)
+
+    document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
+    }
 }
 function stopButt(){
-    document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
+    if (started == true){
+
+    }
+    else{
+        document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
+
+
+        document.getElementById("options").style.animation = 'startOGlow 0.75s ease-in-out infinite alternate';
+
+    }
 }
 function fade(){
     document.getElementById("options").style.animation = 'fadein 1s ease-in-out';
     document.getElementById("options").style.opacity = "1";
 }
+function optButt(){
+    document.getElementById("options").style.animation = 'startOGlow 0.75s ease-in-out infinite alternate';
+    document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out';
+
+}
+function optStopButt(){
+    if (oStarted == false){
+        console.log("yeet");
+        document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
+    }
+    else{
+
+    }
+    if(started == true){
+
+        document.getElementById("start").style.animation = 'startGlow 0.75s ease-in-out infinite alternate';
+
+    document.getElementById("options").style.animation = 'stopOGlow 0.75s ease-in-out ';
+    }  
+}
+function OptionP(){
+    oStarted = true;
+    started = false;
+    console.log(oStarted);
+    document.getElementById("start").style.animation = 'stopGlow 0.75s ease-in-out ';
+    
+}
 function pressButt(){
+    started = true;
     var opt = document.getElementById("options");
     var butt = document.getElementById("start");
     var bux = document.getElementById("box");
     butt.removeEventListener("click", pressButt);
-    butt.removeEventListener("mouseleave", stopButt);
-    butt.removeEventListener("mouseover", startButt);
+    butt.removeEventListener("click", fade);
     opt.style.display = "inline-block";
     var startT = parseInt(butt.offsetTop);
     var startL = parseInt(butt.offsetLeft);
@@ -60,4 +101,8 @@ function pressButt(){
         }
 
     }, 10)
+}
+function pressButt2(){
+    started = true;
+    ostarted = false;
 }

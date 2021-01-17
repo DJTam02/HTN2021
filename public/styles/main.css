@@ -29,7 +29,7 @@
     left: 25%;
     font-size: 300px;
     padding:32px 16px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.699);
     text-align: center;
     border: none;
 
@@ -68,6 +68,27 @@
            opacity: 1;
         }
       }
+      @keyframes startOGlow {
+        from{
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #21a6e4, 0 0 40px #21a6e4, 0 0 50px #21a6e4, 0 0 60px#21a6e4, 0 0 70px #21a6e4;
+        }
+        
+        to{
+          text-shadow: 0 0 20px #fff, 0 0 30px #5cf4ff94, 0 0 40px #5cf4ff94, 0 0 50px #5cf4ff94, 0 0 60px #5cf4ff94, 0 0 70px #5cf4ff94, 0 0 80px#5cf4ff94;
+        }
+      }
+
+      @keyframes stopOGlow {
+        from{
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #21a6e4, 0 0 40px #21a6e4, 0 0 50px #21a6e4, 0 0 60px#21a6e4, 0 0 70px #21a6e4;
+        }
+        to{
+          
+        }
+      }
+#options:focus{
+  outline:none;
+}
 #options{
     position:absolute;
     top: 5%;
@@ -76,7 +97,7 @@
     text-align: center;
     border: none;
     font-size: 122px;
-    color: #fff;
+    color:rgba(255, 255, 255, 0.699);
     opacity: 0;
 }
 #box{

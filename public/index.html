@@ -42,8 +42,10 @@
         var database = firebase.database();
     </script>
     <script> var w = window.outerWidth; var h = window.outerHeight;</script>
+    <script> var started = false; var oStarted = false;</script>
     <script src="scripts/db.js"></script>
     <script src="scripts/landpage.js"></script>
     <script> document.getElementById("start").addEventListener("click", fade);document.getElementById("start").addEventListener("click", pressButt); document.getElementById("start").addEventListener("mouseover", startButt); document.getElementById("start").addEventListener("mouseleave", stopButt);</script>
+    <script> document.getElementById("options").addEventListener("click", OptionP);document.getElementById("start").addEventListener("click", pressButt2);document.getElementById("options").addEventListener("mouseover",optButt); document.getElementById("options").addEventListener("mouseleave",optStopButt)</script>
 </body>
 </html>
