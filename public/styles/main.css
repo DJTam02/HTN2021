@@ -47,6 +47,26 @@ body {
 #start:focus{
     outline: none;
 }
+#arrowButton0{
+  text-indent: 100%;
+  color:rgb(74, 168, 255);
+  font-weight: bold;
+}
+#arrowButton1{
+  text-indent: 0%;
+  color:red;
+  font-weight: bold;
+}
+#arrowButton2{
+  text-indent: 320%;
+  color:yellow;
+  font-weight: bold;
+}
+#arrowButton3{
+  text-indent: 0%;
+  color:green;
+  font-weight: bold;
+}
 
 #start {
     position: absolute;
@@ -57,7 +77,10 @@ body {
     color: rgba(255, 255, 255, 0.699);
     text-align: center;
     border: none;
-
+}
+#settings{
+  margin:45px;
+  animation: fadein 0.25s ease-in-out;
 }
 @keyframes startGlow {
     from{
