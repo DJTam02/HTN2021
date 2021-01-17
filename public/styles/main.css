@@ -1,3 +1,24 @@
+.mapRow {
+  display: block;
+  width: 100%;
+  transition: 0.25s;
+}
+.mapHead {
+  background-color: black;
+  padding: 20px;
+  font-family: Arial;
+  color: white;
+  transition: 0.5s;
+}
+.innerMapRow {
+  padding: 10px;
+  background-color: grey;
+}
+.mapRow:hover .mapHead{
+  font-size: 48px;
+  transition: 0.5s;
+  animation: 0.75s ease-in-out 0s infinite alternate none running stopOGlow;
+}
 #tbl td, #tbl, #tbl th {
     border: solid 1px rgb(172, 231, 33);
 }

@@ -35,6 +35,7 @@ function OptionP(){
     document.getElementById("maps").style.display = "none";
 }
 function pressButt(){
+    getMaps();
     started = true;
     var opt = document.getElementById("options");
     var butt = document.getElementById("start");
@@ -91,4 +92,26 @@ function pressButt2(){
     ostarted = false;
     document.getElementById("maps").style.display = "inline-block";
     document.getElementById("settings").style.display = "none";
+}
+function getMaps() {
+    var ref = database.ref();
+    ref.once("value", function(snapshot) {
+        snapshot.forEach(function(child) {
+            let innerDiv = document.createElement("div");
+            innerDiv.classList.add("innerMapRow");
+            let div = document.createElement("div");
+            div.classList.add("mapRow");
+            let head = document.createElement("h1");
+            head.classList.add("mapHead");
+            head.innerHTML = child.key;
+            innerDiv.appendChild(head);
+            div.appendChild(innerDiv);
+            div.addEventListener("click", mapSelected);
+            document.getElementById("maps").appendChild(div);
+            //console.log(child.key + ": " + child.child("Filename").val());
+        });
+    });
+}
+function mapSelected(e) {
+    console.log(e.target);
 }

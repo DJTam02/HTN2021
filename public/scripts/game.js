@@ -117,7 +117,6 @@ function leftPressed(e) {
         console.log(arrowErrors[document.leftArrow[1]]);
     }
 }
-
 function downPressed(e) {
     if (e.key == keys[1]) {
         arrowErrors[document.downArrow[1]] = parseFloat(document.downArrow[0].style.top) / pixelsPerSec;
