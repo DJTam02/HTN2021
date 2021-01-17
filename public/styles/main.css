@@ -46,6 +46,12 @@ body {
   color:green;
   font-weight: bold;
 }
+#kong{
+  width: 600px;
+  height: 600px;
+  margin-left:1000px;
+  margin-top:-700px;
+}
 
 #start {
     position: absolute;
